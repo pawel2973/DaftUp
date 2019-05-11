@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta name="author" content="Paweł Fiołek">
+    <title>Zadanie 2</title>
+    <style>
+        .modal {
+            position: fixed;
+            left: 15%;
+            top: 30%;
+            width: 70%;
+            box-sizing: border-box;
+            padding: 15px;
+            background-color: #fff;
+            box-shadow: 1px 1px 1px #212529;
+            opacity: 0;
+            z-index: 500;
+            transition: all 0.5s ease-out;
+            transform: translateY(-100vh);
+        }
+
+        @media (min-width: 600px) {
+            .modal {
+                left: calc(50% - 250px);
+                width: 500px;
+            }
+        }
+
+        .modal__content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 0 0 0;
+        }
+
+        .modal__item {
+            margin: 15px 0;
+        }
+
+        .modal__link {
+            font-size: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal__link--green {
+            color: #268e28;
+        }
+
+        .modal__link--green:hover {
+            font-weight: 800;
+            font-size: 22px;
+            text-decoration: underline;
+        }
+
+        .backdrop {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 7px 13px;
+            color: #212529;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .button--primary {
+            color: #fff;
+            background-color: #1362ff;
+            border-color: #1362ff;
+        }
+
+        .button--primary:hover {
+            color: #fff;
+            background-color: #1362ff;
+            border-color: #1362ff;
+            box-shadow: 0 1px 3px #212529, 0 1px 3px #212529;
+        }
+
+        .button--primary:focus {
+            color: #fff;
+            background-color: #1362ff;
+            border-color: #1362ff;
+            box-shadow: 0 0 0 3px rgba(25, 59, 255, 0.5);
+        }
+
+        .button--secondary {
+            color: #fff;
+            background-color: #ff392f;
+            border-color: #ff392f;
+        }
+
+        .button--secondary:hover {
+            color: #fff;
+            background-color: #ff392f;
+            border-color: #ff392f;
+            box-shadow: 0 1px 3px #212529, 0 1px 3px #212529;
+        }
+
+        .button--secondary:focus {
+            color: #fff;
+            background-color: #ff392f;
+            border-color: #ff392f;
+            box-shadow: 0 0 0 3px rgba(255, 6, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+<button class="button button--primary" onclick="showModal()">show modal</button>
+
+<div id="modal" class="modal">
+    <div class="modal__content">
+        <div class="modal__item">
+            <a class="modal__link modal__link--green" href="3.html">Zadanie 3</a>
+        </div>
+        <div class="modal__item">
+            <button class="button button--secondary" onclick="closeModal()">close modal</button>
+        </div>
+    </div>
+</div>
+
+<div id="backdrop" class="backdrop"></div>
+
+<script>
+    const modal = document.getElementById('modal');
+    const backdrop = document.getElementById('backdrop');
+
+    const showModal = () => {
+        modal.style.opacity = "100";
+        modal.style.transform = "translateY(0)";
+        backdrop.style.display = "block";
+    };
+
+    const closeModal = () => {
+        modal.style.transform = "translateY(-100vh)";
+        modal.style.opacity = "0";
+        backdrop.style.display = "none";
+    }
+</script>
+</body>
+</html>

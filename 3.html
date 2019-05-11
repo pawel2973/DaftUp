@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta name="author" content="Paweł Fiołek">
+    <title>Zadanie 3</title>
+    <style>
+        html, body {
+            margin: 15px;
+            padding: 0;
+        }
+
+        .search {
+            display: flex;
+            flex-flow: row;
+            width: 100%;
+            height: 50px;
+            margin: 0 0 15px 0;
+        }
+
+        .search__input {
+            display: block;
+            flex-grow: 8;
+            height: 100%;
+            margin: 0 15px 0 0;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .search__input:hover {
+            box-shadow: 2px 2px 3px #212529;
+        }
+
+        .filtered_table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .filtered_table tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .filtered_table tr:hover {
+            background-color: #1362ff;
+            color: #fff;
+        }
+
+        .filtered_table td {
+            text-align: left;
+            padding: 12px;
+        }
+
+        .button {
+            display: block;
+            flex-grow: 2;
+            height: 100%;
+            color: #212529;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .button--primary {
+            color: #fff;
+            background-color: #1362ff;
+            border-color: #1362ff;
+        }
+
+        .button--primary:hover {
+            color: #fff;
+            background-color: #1362ff;
+            border-color: #1362ff;
+            box-shadow: 0 1px 3px #212529, 0 1px 3px #212529;
+        }
+
+        .button--primary:focus {
+            color: #fff;
+            background-color: #1362ff;
+            border-color: #1362ff;
+            box-shadow: 0 0 0 3px rgba(25, 59, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+<div class="search">
+    <input id="search-input" class="search__input" type="text" placeholder="Search">
+    <button class="button button--primary" onclick="filterTable()">ok</button>
+</div>
+
+<table id="filtered-table" class="filtered_table">
+    <tr>
+        <td>Walmart</td>
+    </tr>
+    <tr>
+        <td>State Grid</td>
+    </tr>
+    <tr>
+        <td>Sinopec Group</td>
+    </tr>
+    <tr>
+        <td>China National Petroleum</td>
+    </tr>
+    <tr>
+        <td>Royal Dutch Shell</td>
+    </tr>
+    <tr>
+        <td>Toyota Motor</td>
+    </tr>
+    <tr>
+        <td>BP</td>
+    </tr>
+    <tr>
+        <td>Exxon Mobil</td>
+    </tr>
+    <tr>
+        <td>Berkshire Hathaway</td>
+    </tr>
+</table>
+
+<script>
+    document.getElementById("search-input").addEventListener('keyup', e => {
+        if (e.key === "Enter") {
+            filterTable();
+        }
+    });
+
+    const filterTable = () => {
+        const input = document.getElementById("search-input");
+        const inputText = input.value.toLowerCase();
+        const table = document.getElementById("filtered-table");
+        const tr = table.getElementsByTagName("tr");
+        let td, tableText;
+
+        for (let i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                tableText = td.innerText || td.textContent;
+                if (tableText.toLowerCase().indexOf(inputText) > -1) {
+                    tr[i].style.display = "table-row";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    };
+</script>
+
+</body>
+</html>
